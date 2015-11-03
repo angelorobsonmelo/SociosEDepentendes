@@ -1,0 +1,43 @@
+<form ng-submit="salvar()" class="form-horizontal">
+    <label >Nome:</label><br/>
+    <input type="text" placeholder="Nome" class="form-control" ng-model="socio.nome" />
+    <label >Sobrenome</label><br/>
+    <input type="text" placeholder="Sobrenome" class="form-control" ng-model="socio.sobreNome" />
+    <label >Número da matrícula</label><br/>
+    <input type="text" placeholder="número de matricula" class="form-control" ng-model="socio.numeroMatricula" /><br/>
+    <button class="btn btn-primary btn-lg btn-block">Salvar</button>
+
+</form>
+
+<br/><br/><br/>
+<section ng-hide="esconder" >
+<input placeholder="o que procura?" type="text" ng-model="search"/>
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>#</th>
+        <th>Nome</th>
+        <th>Sobrenome</th>
+        <th>Matrícula</th>
+        <th>Ação</th>
+
+
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="socio in socios | filter: search">
+        <td >{{$index + 1}}</td>
+        <td>{{ socio.nome }}</td>
+        <td>{{ socio.sobrenome }}</td>
+        <td>{{ socio.numero_matricula }}</td>
+        <td><button class="btn btn-primary btn-sm" ng-click="excluir(socio.id, socio.nome, socio.sobrenome);">excluir</button>||<button class="btn btn-primary btn-sm"  ng-click="editar(socio.id)">editar</button> ||<button class="btn btn-primary btn-sm" >ver</button></td>
+
+    </tr>
+
+
+    </tbody>
+</table>
+
+
+
+</section>

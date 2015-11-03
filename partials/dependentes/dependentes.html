@@ -1,0 +1,66 @@
+
+<form ng-submit="salvar()">
+    <label for="txtNome">Nome</label><br/>
+    <input type="text" placeholder="Nome" class="form-control" id="txtNome" ng-model="dependente.nome"  />
+    <label for="txtDataNascimento">Data de nascimento</label><br/>
+    <input type="date" placeholder="Data de nascimento" ng-model="dependente.dataNascimento" class="form-control" id="txtDataNascimento" />
+    <label for="">Parentesco</label><br/>
+    <select name="" class="form-control" ng-model="dependente.parentesco" >
+
+        <option  value="Mãe">Mãe</option>
+        <option value="Pai">Pai</option>
+        <option value="Filho(a)">Filho(a)</option>
+        <option value="Irmã(ão)">Irmã(ão)</option>
+        <option value="Conjuge">Conjuge</option>
+        <option value="" selected>Selecione...</option>
+    </select>
+    <label for="">Sócio</label><br/>
+
+    <select  ng-model="dependente.codSocio" class="form-control">
+
+        <option  ng-repeat="item in matriculaENome | orderBy: 'nome'" value="{{item.id}}">{{ item.nome }} {{item.sobrenome}} &nbsp; Matrícula: &nbsp;{{ item.numero_matricula }}. </option>
+        <option value="" selected>Selecione...</option>
+
+    </select><br/>
+    <button class="btn btn-primary btn-lg btn-block">Salvar</button>
+
+
+</form>
+
+
+<br/><br/><br/>
+<section ng-hide="esconder" >
+    <input placeholder="o que procura?" type="text" ng-model="search"/>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>Nome do dependente</th>
+            <th>Data de nascimento</th>
+            <th>Idade</th>
+            <th>Parentesco</th>
+            <th>Sócio</th>
+            <th>Número da Matricúla</th>
+            <th>Ação</th>
+
+
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="dependente in dependentes | filter: search">
+            <td >{{$index + 1}}</td>
+            <td>{{ dependente.nome }}</td>
+            <td>{{ dependente.dataNascimento }}</td>
+            <td>{{ dependente.idade }}</td>
+            <td>{{ dependente.parentesco }}</td>
+            <td>{{ dependente.nomeSocio }} {{ dependente.sobrenome }}</td>
+            <td>{{ dependente.numeroMatricula }}</td>
+            <td><button class="btn btn-primary btn-sm" ng-click="excluir(socio.id, socio.nome, socio.sobrenome);">excluir</button>||<button class="btn btn-primary btn-sm"  ng-click="editar(socio.id)">editar</button></td>
+
+        </tr>
+
+
+        </tbody>
+    </table>
+
+
